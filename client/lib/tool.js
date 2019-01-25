@@ -3,10 +3,10 @@
 
 'use strict';
 
-var mapId = 'tiexi-full';
-var themeId = 'tiexi-full';
-var appkey = '804deeb2f40bba722affc5acc645909a';
-var appname = 'DILO';
+var mapId = '';
+var themeId = '';
+var appkey = '';
+var appname = '';
 
 var map;
 var marker;
