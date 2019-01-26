@@ -1,32 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv='X-UA-Compatible' content='ie=edge'>
     <title>测试</title>
-    <script src="./lib/jsoneditor.min.js"></script>
-    <script src="./lib/fengmap.min-lastest-v2.2.0.js"></script>
-    <script src="./lib/tool.js"></script>
-    <script src="./lib/jquery.min.js"></script>
-    <link rel="stylesheet" href="./css/jsoneditor.css">
-    <link rel="stylesheet" href="./css/style.css">
+    <script src='./lib/jsoneditor.min.js'></script>
+    <script src='./lib/fengmap.min-lastest-v2.2.0.js'></script>
+    <script src='./lib/tool.js'></script>
+    <script src='./lib/jquery.min.js'></script>
+    <link rel='stylesheet' href='./css/jsoneditor.css'>
+    <link rel='stylesheet' href='./css/style.css'>
 </head>
 
 <body>
-    <div class="layerList" id="layerList">
-        <input type="button" id="saveDocument" value="更新样式" onclick="eval('send(JSON.parse(editor.getText()))')" />
-        <button onclick="eval('rotate()')">旋转地图</button><button onclick="eval('stopRotate()')">暂停旋转</button>
+    <div class='layerList' id='layerList'>
+        <input type='button' id='saveDocument' value='更新样式' onclick='eval("send(JSON.parse(editor.getText()))")' />
+        <button onclick='eval("rotate()")'>旋转地图</button><button onclick='eval("stopRotate()")'>暂停旋转</button>
 
     </div>
-    <div id="jsoneditor" style="top:50px;width: 500px; height: 800px;position: absolute;background-color: bisque"></div>
-    <div id="map" class="container">
+    <div id='jsoneditor' style='top:50px;width: 500px; height: 800px;position: absolute;background-color: bisque'></div>
+    <div id='map' class='container'>
     </div>
 
     <script>
         // create the editor
-        var container = document.getElementById("jsoneditor");
+        var container = document.getElementById('jsoneditor');
 
         var options = {
             mode: 'tree',
@@ -44,10 +44,10 @@
 
         function readTextFile(file, callback) {
             var rawFile = new XMLHttpRequest();
-            rawFile.overrideMimeType("application/json");
-            rawFile.open("GET", file, true);
+            rawFile.overrideMimeType('application/json');
+            rawFile.open('GET', file, true);
             rawFile.onreadystatechange = function () {
-                if (rawFile.readyState === 4 && rawFile.status == "200") {
+                if (rawFile.readyState === 4 && rawFile.status == '200') {
                     callback(rawFile.responseText);
                 }
             }
@@ -55,7 +55,7 @@
         }
 
         //usage:
-        readTextFile("./data/theme/" + themeId + "/" + themeId + ".theme", function (text) {
+        readTextFile('./data/theme/' + mapId + '/' + themeId + '/' + themeId + '.theme', function (text) {
             var data = JSON.parse(text);
             editor.set(data);
             var json = editor.get();
@@ -63,16 +63,17 @@
 
         function send(rawData) {
             $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "http://localhost:3000/uploadTheme",
+                type: 'POST',
+                contentType: 'application/json',
+                url: 'http://localhost:3000/uploadTheme?map=' + mapId + '&theme=' + themeId,
                 data: JSON.stringify(rawData),
                 dataType: 'json',
                 success: function (result) {
-                    alert("success",result);
                     location.reload();
                 },
-                error: function (result) { alert("error",result); }
+                error: function (result) {
+                    console.error('FMEDITOR:', result);
+                }
             });
         }
 
