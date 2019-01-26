@@ -3,10 +3,10 @@
 
 'use strict';
 
-var mapId = '';
-var themeId = '';
-var appkey = '';
-var appname = '';
+var mapId = '10347';
+var themeId = '2001';
+var appkey = '57c7f309aca507497d028a9c00207cf8';
+var appname = '蜂鸟研发SDK_2_0';
 
 var map;
 var marker;
@@ -263,7 +263,7 @@ function init() {
     map = new fengmap.FMMap({
         container: document.getElementById(containerId),
         mapServerURL: './data/' + mapId,
-        mapThemeURL: './data/theme',
+        mapThemeURL: './data/theme/' + mapId,
         defaultThemeName: themeId,
         //defaultVisibleGroups: [1],
         //defaultFocusGroup: 1,
