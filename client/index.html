@@ -67,7 +67,7 @@
             $.ajax({
                 type: 'POST',
                 contentType: 'application/json',
-                url: 'http://localhost:3000/uploadTheme?map=' + mapId + '&theme=' + themeId,
+                url: 'http://localhost:3000/uploadTheme?map=' + config.mapId + '&theme=' + config.themeId,
                 data: JSON.stringify(rawData),
                 dataType: 'json',
                 success: function (result) {
