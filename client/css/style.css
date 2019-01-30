@@ -10,6 +10,27 @@
     height: 100%;
 }
 
+.info {
+    z-index: 1000;
+    margin: auto;
+    text-align: center;
+    border: 1px royalblue;
+    background-color: antiquewhite;
+    width: 600px;
+    height: 150px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    overflow: auto;
+    word-break: break-all;
+    word-wrap: break-word;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
 body {
     position: absolute;
     top: 0px;

@@ -21,6 +21,7 @@ var groupControl;
 var navi;
 var locationMarker;
 
+
 //导航拾取标记 0：不拾取坐标|1：拾取起点|2：拾取终点
 var pickFlag = 0;
 
@@ -235,6 +236,44 @@ function fillDataToLayerList() {
     domLayerList.appendChild(domBtnShowLayer);
 }
 
+function getNodeTypeById(id) {
+    switch (id) {
+        case fengmap.FMNodeType.ELEMENT:
+            return "ELEMENT";
+            break;
+        case fengmap.FMNodeType.FACILITY:
+            return "FACILITY";
+            break;
+        case fengmap.FMNodeType.FLOOR:
+            return "FLOOR";
+            break;
+        case fengmap.FMNodeType.IMAGE_MARKER:
+            return "IMAGE_MARKER";
+            break;
+        case fengmap.FMNodeType.LABEL:
+            return "LABEL";
+            break;
+        case fengmap.FMNodeType.LINE:
+            return "LINE";
+            break;
+        case fengmap.FMNodeType.LOCATION_MARKER:
+            return "LOCATION_MARKER";
+            break;
+        case fengmap.FMNodeType.MODEL:
+            return "MODEL";
+            break;
+        case fengmap.FMNodeType.NONE:
+            return "NONE";
+            break;
+        case fengmap.FMNodeType.TEXT_MARKER:
+            return "TEXT_MARKER";
+            break;
+        default:
+            return "NONE";
+            break;
+    }
+}
+
 //#endregion
 
 //#region Init
@@ -297,15 +336,43 @@ function init() {
     map.on('mapClickNode', function (event) {
 
         console.log(event);
+        var infoWindow = document.getElementById('info');
+        infoWindow.innerText = '';
 
-        if (1 === 1) {
+        if (!event.data_) {
+            infoWindow.innerText += 'NodeType:' + getNodeTypeById(event.nodeType);
+        } else {
+            if (!event.data_.theme_) {
+                infoWindow.innerText += 'NodeType:' + getNodeTypeById(event.nodeType) + '\n' +
+                    'Name:' + event.data_.name + '\n' +
+                    'EName:' + event.data_.eName + '\n' +
+                    'TypeId:' + event.data_.type + '\n';
+            } else {
+                infoWindow.innerText += 'NodeType:' + getNodeTypeById(event.nodeType) + '\n' +
+                    'FID:' + event.FID + '\n' +
+                    'Name:' + event.name + '\n' +
+                    'EName:' + event.eName + '\n' +
+                    'TypeId:' + event.typeID + '\n' + 'Theme:' + JSON.stringify(event.data_.theme_);
+            }
+        }
+
+        /* if (1 === 1) {
+            var infoWindow = document.getElementById('info');
+            infoWindow.innerText = '';
+            infoWindow.innerText = 'Layer Type:' + event.nodeType + '\n' +
+                'FID:' + event.FID + '\n' +
+                'Name:' + event.name + '\n' +
+                'EName:' + event.eName + '\n' +
+                'TypeId:' + event.typeID + '\n' +
+                'Theme:' + JSON.stringify(event.data_.theme_);
+
             alert('Layer Type:' + 'FMStoreModel' + '\n' +
                 'FID:' + event.FID + '\n' +
                 'Name:' + event.name + '\n' +
                 'EName:' + event.eName + '\n' +
                 'TypeId:' + event.typeID + '\n' +
                 'Theme' + JSON.stringify(event.data_.theme_));
-        }
+        } */
 
         var x = event.eventInfo.coord.x;
         var y = event.eventInfo.coord.y;
