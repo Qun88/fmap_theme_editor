@@ -3,10 +3,10 @@
 
 'use strict';
 
-var mapId = '10347';
+/* var config.mapId = '10347';
 var themeId = '2001';
 var appkey = '57c7f309aca507497d028a9c00207cf8';
-var appname = '蜂鸟研发SDK_2_0';
+var appname = '蜂鸟研发SDK_2_0'; */
 
 var map;
 var marker;
@@ -301,13 +301,13 @@ function init() {
 
     map = new fengmap.FMMap({
         container: document.getElementById(containerId),
-        mapServerURL: './data/' + mapId,
-        mapThemeURL: './data/theme/' + mapId,
-        defaultThemeName: themeId,
+        mapServerURL: './data/' + config.mapId,
+        mapThemeURL: './data/theme/' + config.mapId,
+        defaultThemeName: config.themeId,
         //defaultVisibleGroups: [1],
         //defaultFocusGroup: 1,
-        key: appkey,
-        appName: appname,
+        key: config.appkey,
+        appName: config.appname,
         //defaultMapScaleLevel: 20,
         defaultViewMode: '3d',
         focusAlphaMode: true,
@@ -317,12 +317,12 @@ function init() {
         tiltAngle: 30,
         //frameRate: 60,
         //defaultGroupSpace: 35,
-        lazyCreateMode: lazyCreateMode,
+        lazyCreateMode: config.lazyCreateMode,
         modelSelectedEffect: false
     });
 
 
-    map.openMapById(mapId, function (error) {
+    map.openMapById(config.mapId, function (error) {
         console.log(error);
     });
 
