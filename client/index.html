@@ -6,6 +6,7 @@
     <meta name='viewport' content='width=device-width, initial-scale=1.0'>
     <meta http-equiv='X-UA-Compatible' content='ie=edge'>
     <title>测试</title>
+    <script src="./lib/cfg.js"></script>
     <script src='./lib/jsoneditor.min.js'></script>
     <script src='./lib/fengmap.min-lastest-v2.2.0.js'></script>
     <script src='./lib/tool.js'></script>
@@ -56,7 +57,7 @@
         }
 
         //usage:
-        readTextFile('./data/theme/' + mapId + '/' + themeId + '/' + themeId + '.theme', function (text) {
+        readTextFile('./data/theme/' + config.mapId + '/' + config.themeId + '/' + config.themeId + '.theme', function (text) {
             var data = JSON.parse(text);
             editor.set(data);
             var json = editor.get();
