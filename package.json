@@ -1,0 +1,26 @@
+{
+  "name": "themeeditor",
+  "version": "1.0.0",
+  "description": "提供一个所见即所得的主题编辑工具，目前的版本还非常简单，仅仅是修改主题文件后提交到后端进行备份保存并应用更新。",
+  "main": "/server/server.js",
+  "dependencies": {
+    "bootstrap": "^4.1.3",
+    "express": "^4.16.3",
+    "jsoneditor": "^5.24.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qun88/fmap_theme_deitor.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Qun88/fmap_theme_deitor/issues"
+  },
+  "homepage": "https://github.com/Qun88/fmap_theme_deitor#readme"
+}
